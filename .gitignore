@@ -1,0 +1,8 @@
+.DS_Store
+.hermes/
+.ipynb_checkpoints/
+__pycache__/
+
+# Local course materials and generated working data.
+resources/
+data/processed/

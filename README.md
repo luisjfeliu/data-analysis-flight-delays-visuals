@@ -1,10 +1,14 @@
-# Part I: Exploratory Data Analysis — US Airlines On-Time Performance (2025)
+# US Airlines On-Time Performance (2025)
 
 ## Dataset
 
 **Source:** Bureau of Transportation Statistics — Reporting Carrier On-Time Performance Data
 **Year:** 2025 (12 months: Jan–Dec)
-**Size:** ~7 million flights (3 GB CSV, 109 columns)
+**Size:** ~7 million flights across the monthly source ZIP files
+
+The committed project data lives under `data/raw/` and is tracked with Git LFS. The `resources/` directory is intentionally ignored because it contains local course materials, example projects, and generated working files.
+
+The notebooks load directly from the monthly ZIP files in `data/raw/`. If a local `data/processed/combined_2025.csv` exists, the notebooks use it as an optional faster cache; generated processed data should not be committed.
 
 ## Analysis Theme
 
@@ -57,10 +61,13 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 
 - `Part_I_exploration.ipynb` — Main analysis notebook (executable)
 - `Part_I_exploration.html` — Exported HTML report
+- `Part_II_explanatory.ipynb` — Polished explanatory analysis notebook
+- `Part_II_explanatory.slides.html` — Exported explanatory slide deck
+- `data/raw/` — Monthly 2025 BTS source ZIP files tracked with Git LFS
 
 ## Methodology Notes
 
 - **NaN handling:** NaN in delay columns represents on-time flights (0 delay), not missing data. All delay columns were filled with 0.
-- **Subsampling:** Hexbin plots and pair plots used subsamples (50K–100K rows) to maintain performance with the 2M+ row dataset.
+- **Subsampling:** Hexbin plots and pair plots used subsamples (50K–100K rows) to maintain performance with the 7M+ row dataset.
 - **Airline grouping:** Top 10 airlines by volume analyzed individually; smaller carriers grouped as "Other".
 - **Delayed threshold:** ArrDelay > 15 minutes used as the industry-standard definition of a delayed flight.
