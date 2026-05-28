@@ -13,4 +13,4 @@ This project uses the Bureau of Transportation Statistics Reporting Carrier On-T
 - `resources/` is intentionally ignored. It contains downloaded course materials, examples, and local extracted working files.
 - `data/processed/` is intentionally ignored. Use it for generated files such as a combined CSV if you want a faster local reload path.
 
-The notebooks can load directly from the tracked monthly ZIP files in `data/raw/`. If `data/processed/combined_2025.csv` exists locally, the notebooks will use it as a faster optional cache.
+The notebooks can load directly from the tracked monthly ZIP files in `data/raw/`. If an ignored `data/processed/combined_2025.csv` exists locally, the notebooks will use it as a faster optional cache, so saved output may report the processed cache as its source. In a clean checkout without that cache, they load from the committed monthly ZIP files.

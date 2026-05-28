@@ -8,7 +8,7 @@
 
 The committed project data lives under `data/raw/` and is tracked with Git LFS. The `resources/` directory is intentionally ignored because it contains local course materials, example projects, and generated working files.
 
-The notebooks load directly from the monthly ZIP files in `data/raw/`. If a local `data/processed/combined_2025.csv` exists, the notebooks use it as an optional faster cache; generated processed data should not be committed.
+The notebooks load directly from the monthly ZIP files in `data/raw/`. If a local ignored `data/processed/combined_2025.csv` exists, the notebooks use it as an optional faster cache, so saved output may report the processed cache as its source. In a clean checkout without that cache, they load from the committed monthly ZIP files. Generated processed data should not be committed.
 
 ## Analysis Theme
 
@@ -73,5 +73,5 @@ The Part II deck uses five polished visuals from Part I: delay recovery by depar
 - **Status handling:** Cancelled and diverted flights are counted in status analysis but excluded from delay analysis because they do not have comparable completed-flight arrival outcomes.
 - **NaN handling:** Blank delay-cause fields are converted to 0 because no minutes were attributed to that cause.
 - **Subsampling and aggregation:** The hexbin scatterplot uses a 100K-row subsample, and several charts use grouped summaries to maintain performance with the 7M+ row dataset.
-- **Airline grouping:** Top airlines by volume are analyzed individually where grouping is needed; smaller carriers are grouped as "Other".
+- **Airline grouping:** V17 analyzes the top airlines by flight volume plus "Other"; V14 analyzes the top 5 airlines by mean delay-cause minutes plus "Other". Ranked airline charts show all reporting airlines.
 - **Delayed threshold:** Official BTS `DepDel15` and `ArrDel15` flags are used for significant delays, meaning 15 minutes or more late.

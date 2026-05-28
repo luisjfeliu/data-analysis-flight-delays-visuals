@@ -7483,9 +7483,9 @@ main {
 <li><strong>Source:</strong> Bureau of Transportation Statistics (BTS) Reporting Carrier On-Time Performance Data</li>
 <li><strong>Coverage:</strong> US domestic scheduled flights in 2025</li>
 <li><strong>Scope:</strong> 7,001,619 scheduled flights; 6,879,484 completed flights used for delay analysis</li>
-<li><strong>Local data:</strong> monthly source ZIP files in <code>data/raw/</code>; optional cache in <code>data/processed/combined_2025.csv</code></li>
+<li><strong>Local data:</strong> monthly source ZIP files in <code>data/raw/</code>; optional ignored cache in <code>data/processed/combined_2025.csv</code></li>
 </ul>
-<p>The analysis focuses on whether flights arrive late, what causes attributed delay minutes, and when flights recover time after departure.</p>
+<p>The analysis focuses on whether flights arrive late, what causes attributed delay minutes, and when flights recover time after departure. If the saved output reports the processed cache as the source, that reflects the local cache path used for faster reruns; a clean checkout without the cache loads from the committed monthly ZIP files.</p>
 </div>
 </div>
 </div>
