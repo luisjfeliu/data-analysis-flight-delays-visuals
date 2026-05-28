@@ -30,9 +30,11 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 
 4. **Seasonality has a summer peak and a December spike:** June and July show the highest significant arrival-delay rates, September is the clearest low-delay month, and December stands out as the strongest winter/holiday spike.
 
-5. **Geography matters, but state aggregation is coarse:** Origin states differ in both average delay and departure-to-arrival recovery, and the largest recovery gaps are not the same states with the highest mean arrival delays.
+5. **Geography matters, but state aggregation is coarse:** Origin states differ in both average delay and departure-to-arrival recovery, and the Part II state view should be read as a recovery-gap screen rather than a worst-delay ranking.
 
 Part I also found that distance alone is a weak predictor: significant arrival-delay rates are fairly flat across distance bins, so local factors such as airport congestion, weather, schedule timing, and airline operations appear more important than mileage by itself.
+
+The Part II deck uses five polished visuals from Part I: delay recovery by departure-delay range (V18), mean delay by cause (V5), day/time delay risk (V15), monthly delay risk (V12), and origin-state recovery gaps (V16).
 
 ## Visualizations (19 total)
 
