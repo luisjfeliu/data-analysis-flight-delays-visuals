@@ -18,13 +18,13 @@ Three interconnected questions drive the exploration:
 2. **Q2 (Arrival):** What factors most significantly influence flight arrival delays?
 3. **Q3 (Comparison):** How do the factors affecting departure delays differ from those affecting arrival delays?
 
-This framing traces how delays accumulate (or get resolved) over the course of a flight.
+This framing traces how delays accumulate (or get resolved) over the course of a flight. The Part II explanatory deck distills the exploration into five executive-summary insights about recovery, attributed causes, timing, seasonality, and geography.
 
-## Key Findings
+## Part II Key Findings
 
 1. **Flights often recover some schedule time after departure:** The median delay delta (ArrDelay - DepDelay) is negative, meaning completed flights tend to arrive closer to schedule than they departed. Large departure delays still have wider outcomes and are less predictable.
 
-2. **Airline operations are the dominant delay driver:** LateAircraftDelay and CarrierDelay are the largest contributors to overall delays, suggesting airline operational efficiency (crew scheduling, aircraft turnaround, maintenance) is more impactful than weather or security delays on average.
+2. **Late aircraft and carrier delays lead attributed causes:** LateAircraftDelay and CarrierDelay are the largest contributors to attributed delay minutes, with NASDelay also meaningful. Weather and security delays are much smaller in the annual average.
 
 3. **Sunday and late-day flights are most delay-prone:** Arrival-delay distributions and significant-delay rates peak on Sunday, especially in the evening, while Thursday and Friday evenings are also elevated and Tuesday is consistently lower.
 
@@ -32,7 +32,7 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 
 5. **Geography matters, but state aggregation is coarse:** Origin states differ in both average delay and departure-to-arrival recovery, but the largest recovery gaps are not always the same states with the highest mean delays.
 
-6. **Distance is a weak predictor:** Significant arrival-delay rates are fairly flat across distance bins. Local factors such as airport congestion, weather, schedule timing, and airline operations appear more important than distance alone.
+Part I also found that distance alone is a weak predictor: significant arrival-delay rates are fairly flat across distance bins, so local factors such as airport congestion, weather, schedule timing, and airline operations appear more important than mileage by itself.
 
 ## Visualizations (19 total)
 
