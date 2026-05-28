@@ -24,13 +24,13 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 
 1. **Flights often recover some schedule time after departure:** The median delay delta (ArrDelay - DepDelay) is negative, meaning completed flights tend to arrive closer to schedule than they departed. Large departure delays still have wider outcomes and are less predictable.
 
-2. **Late aircraft and carrier delays lead attributed causes:** LateAircraftDelay and CarrierDelay are the largest contributors to attributed delay minutes, with NASDelay also meaningful. Weather and security delays are much smaller in the annual average.
+2. **Late aircraft and carrier delays lead attributed causes:** LateAircraftDelay and CarrierDelay are the largest contributors to attributed delay minutes when averaged across completed flights, with NASDelay also meaningful. Weather and security delays are much smaller in the annual completed-flight average.
 
 3. **Sunday and late-day flights are most delay-prone:** Arrival-delay distributions and significant-delay rates peak on Sunday, especially in the evening, while Thursday and Friday evenings are also elevated and Tuesday is consistently lower.
 
 4. **Seasonality has a summer peak and a December spike:** June and July show the highest significant arrival-delay rates, September is the clearest low-delay month, and December stands out as the strongest winter/holiday spike.
 
-5. **Geography matters, but state aggregation is coarse:** Origin states differ in both average delay and departure-to-arrival recovery, but the largest recovery gaps are not always the same states with the highest mean delays.
+5. **Geography matters, but state aggregation is coarse:** Origin states differ in both average delay and departure-to-arrival recovery, and the largest recovery gaps are not the same states with the highest mean arrival delays.
 
 Part I also found that distance alone is a weak predictor: significant arrival-delay rates are fairly flat across distance bins, so local factors such as airport congestion, weather, schedule timing, and airline operations appear more important than mileage by itself.
 

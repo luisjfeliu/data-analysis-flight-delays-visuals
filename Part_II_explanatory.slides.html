@@ -7575,7 +7575,7 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Insight-2:-Late-Aircraft-and-Carrier-Delays-Lead">Insight 2: Late Aircraft and Carrier Delays Lead<a class="anchor-link" href="#Insight-2:-Late-Aircraft-and-Carrier-Delays-Lead">¶</a></h2><p><strong>Question:</strong> Which attributed delay causes contribute the most to completed-flight delay minutes?</p>
-<p><strong>Answer:</strong> <strong>LateAircraftDelay</strong> (late-arriving aircraft cascading into later departures) and <strong>CarrierDelay</strong> (crew scheduling, maintenance, operational issues) are the two largest contributors. <strong>NASDelay</strong> is also meaningful, so the story is not only airline-controlled; weather and security delays are much smaller in the annual average.</p>
+<p><strong>Answer:</strong> <strong>LateAircraftDelay</strong> (late-arriving aircraft cascading into later departures) and <strong>CarrierDelay</strong> (crew scheduling, maintenance, operational issues) are the two largest contributors when averaged across completed flights. <strong>NASDelay</strong> is also meaningful, so the story is not only airline-controlled; weather and security delays are much smaller in the annual completed-flight average.</p>
 <p>This points to two major improvement paths: airline operational reliability through better turnaround, crew management, and planning, plus system-level airspace and airport-flow coordination.</p>
 </div>
 </div>
@@ -7598,7 +7598,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The sorted bar chart shows that LateAircraftDelay and CarrierDelay are the two largest attributed causes, with NASDelay still meaningful. LateAircraftDelay reflects cascading schedule effects: a late arrival at one airport can delay the aircraft's next departure. CarrierDelay covers crew scheduling, maintenance, and other airline-controlled factors, while NASDelay captures airspace and airport-flow constraints. Weather and security are much smaller in this annual average, so the strongest levers are airline operational reliability plus airspace and airport coordination.</p>
+<p>The sorted bar chart shows that LateAircraftDelay and CarrierDelay are the two largest attributed causes when averaged across completed flights, with NASDelay still meaningful. LateAircraftDelay reflects cascading schedule effects: a late arrival at one airport can delay the aircraft's next departure. CarrierDelay covers crew scheduling, maintenance, and other airline-controlled factors, while NASDelay captures airspace and airport-flow constraints. Weather and security are much smaller in this annual completed-flight average, so the strongest levers are airline operational reliability plus airspace and airport coordination.</p>
 </div>
 </div>
 </div>
@@ -7679,7 +7679,7 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Insight-5:-Geography-Matters,-but-State-Aggregation-Is-Coarse">Insight 5: Geography Matters, but State Aggregation Is Coarse<a class="anchor-link" href="#Insight-5:-Geography-Matters,-but-State-Aggregation-Is-Coarse">¶</a></h2><p><strong>Question:</strong> Do some origins show larger departure-to-arrival recovery gaps than others?</p>
-<p><strong>Answer:</strong> Yes — origin states and territories differ in how much delay changes between departure and arrival. However, the largest gaps are mostly recovery gaps (<code>ArrDelay &lt; DepDelay</code>), and state-level aggregation is coarse. It is useful for screening geographic patterns, but airport- or route-level analysis would be needed for operational decisions.</p>
+<p><strong>Answer:</strong> Yes — origin states and territories differ in how much delay changes between departure and arrival. However, the largest gaps are mostly recovery gaps (<code>ArrDelay &lt; DepDelay</code>), and they are not the same as the states with the highest mean arrival delays. State-level aggregation is useful for screening geographic patterns, but airport- or route-level analysis would be needed for operational decisions.</p>
 </div>
 </div>
 </div>
@@ -7701,7 +7701,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The largest origin-level gaps in the 2025 data are recovery gaps: mean arrival delay is lower than mean departure delay for the highlighted states and territories. This supports the Part I conclusion that geography matters, while also showing why state-level aggregation should be treated as a coarse screening view rather than a final hub-level diagnosis.</p>
+<p>The largest origin-level gaps in the 2025 data are recovery gaps: mean arrival delay is lower than mean departure delay for the highlighted states and territories. The underlying state summary also shows that these largest recovery-gap states are not the same as the highest mean-arrival-delay states. This supports the Part I conclusion that geography matters, while also showing why state-level aggregation should be treated as a coarse screening view rather than a final hub-level diagnosis.</p>
 </div>
 </div>
 </div>
@@ -7718,7 +7718,7 @@ main {
 <li><strong>Late aircraft and carrier delays lead</strong> — they are the largest attributed contributors, with NAS delay also meaningful</li>
 <li><strong>Sunday evening is highest risk</strong> — delay risk rises through the day, with Thursday and Friday evenings also elevated</li>
 <li><strong>Seasonality peaks in summer and December</strong> — June/July lead the year, September is lowest, and December is the main winter spike</li>
-<li><strong>Geography matters, but coarsely</strong> — origin states and territories show different recovery gaps, but airport and route context would be needed for decisions</li>
+<li><strong>Geography matters, but coarsely</strong> — origin states and territories show different recovery gaps and high-delay rankings, but airport and route context would be needed for decisions</li>
 </ol>
 <p><strong>Bottom line:</strong> Departure delay remains the strongest signal for arrival delay, but the typical completed flight recovers some time en route. The clearest levers for reducing delay risk are airline operational reliability, airspace/airport coordination, and schedule planning around high-risk time windows and seasons.</p>
 <p><strong>For travelers:</strong> Choose morning departures when possible, treat Sunday evening as the riskiest window, and be especially cautious during the June/July summer peak and December holiday/weather spike.</p>
