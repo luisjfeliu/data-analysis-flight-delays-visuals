@@ -52,7 +52,7 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 | V12 | Distance vs ArrDelay | Hexbin scatter | Does distance relate to delay? |
 | V13 | Delay causes by airline | Clustered bar | Do airlines experience different delay types? |
 | V14 | Delay by day × time | Facet plot | Are there day/time combinations with more delays? |
-| V15 | DepDelay vs ArrDelay by state | Clustered bar | Do some states delay departures but recover en route? |
+| V15 | DepDelay vs ArrDelay by state | Dumbbell plot | Do some states delay departures but recover en route? |
 | V16 | Multi-encoding scatter | Scatter (color=size) | How do airline, distance, and delay interact? |
 | V17 | Delay delta analysis | Scatter + box plot | Do delays compound or dissipate? |
 | V18 | Pair plot | Scatter matrix | What is the correlation structure? |
