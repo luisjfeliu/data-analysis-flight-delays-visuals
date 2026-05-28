@@ -22,9 +22,9 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 
 ## Part II Key Findings
 
-1. **Flights often recover some schedule time after departure:** The median delay delta (ArrDelay - DepDelay) is negative, meaning completed flights tend to arrive closer to schedule than they departed. Large departure delays still have wider outcomes and are less predictable.
+1. **Flights often recover some schedule time after departure:** The median change from departure delay to arrival delay is negative, meaning completed flights usually make up delay minutes after departure. Large departure delays still have wider outcomes and are less predictable.
 
-2. **Late aircraft and carrier delays lead attributed causes:** LateAircraftDelay and CarrierDelay are the largest contributors to attributed delay minutes when averaged across completed flights, with NASDelay also meaningful. Weather and security delays are much smaller in the annual completed-flight average.
+2. **Late aircraft and carrier-controlled delays lead attributed causes:** Late-arriving aircraft and carrier-controlled operational delays are the largest contributors to attributed delay minutes when averaged across completed flights, with National Airspace System delays also meaningful. Weather and security delays are much smaller in the annual completed-flight average.
 
 3. **Sunday and late-day flights are most delay-prone:** Arrival-delay distributions and significant-delay rates peak on Sunday, especially in the evening, while Thursday and Friday evenings are also elevated and Tuesday is consistently lower.
 

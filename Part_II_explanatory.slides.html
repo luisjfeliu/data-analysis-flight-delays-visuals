@@ -7463,8 +7463,8 @@ main {
 <h2 id="Investigation-Overview">Investigation Overview<a class="anchor-link" href="#Investigation-Overview">¶</a></h2><p>This presentation communicates the key findings from an exploratory analysis of <strong>7,001,619 US domestic scheduled flights in 2025</strong>. The data comes from the Bureau of Transportation Statistics (BTS) Reporting Carrier On-Time Performance database. The guiding theme is: <strong>which operational, timing, seasonal, and geographic patterns explain whether flights arrive late or recover time?</strong></p>
 <p><strong>Five guiding questions and key insights:</strong></p>
 <ol>
-<li><strong>Do flights recover after departure?</strong> The typical completed flight arrives closer to schedule than it departed</li>
-<li><strong>Which delay causes matter most?</strong> LateAircraftDelay and CarrierDelay are the two largest attributed causes, with NASDelay also substantial</li>
+<li><strong>Do flights recover after departure?</strong> Completed flights usually make up delay minutes after departure; the median arrival-minus-departure delay is -7 minutes</li>
+<li><strong>Which delay causes matter most?</strong> Late-arriving aircraft and carrier-controlled operational delays are the largest attributed causes, with airspace/airport-flow delays also substantial</li>
 <li><strong>When is delay risk highest?</strong> Sunday evening is the highest-risk timing window</li>
 <li><strong>How does risk change by season?</strong> June/July lead the year, with a separate December spike</li>
 <li><strong>Where do recovery patterns differ?</strong> Origin states and territories differ, but state/territory aggregation is coarse</li>
@@ -7479,50 +7479,49 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Dataset-Overview">Dataset Overview<a class="anchor-link" href="#Dataset-Overview">¶</a></h2><p><strong>Source:</strong> Bureau of Transportation Statistics (BTS) Reporting Carrier On-Time Performance Data<br/>
-<strong>Coverage:</strong> US domestic scheduled flights, 2025<br/>
-<strong>Size:</strong> 7,001,619 scheduled flights; 6,879,484 completed flights used for delay analysis<br/>
-<strong>Project data location:</strong> monthly source ZIP files in <code>data/raw/</code>; optional local cache in <code>data/processed/combined_2025.csv</code></p>
-<p><strong>Key variables:</strong></p>
-<table>
+<h2 id="Dataset-Overview">Dataset Overview<a class="anchor-link" href="#Dataset-Overview">¶</a></h2><ul>
+<li><strong>Source:</strong> Bureau of Transportation Statistics (BTS) Reporting Carrier On-Time Performance Data</li>
+<li><strong>Coverage:</strong> US domestic scheduled flights in 2025</li>
+<li><strong>Scope:</strong> 7,001,619 scheduled flights; 6,879,484 completed flights used for delay analysis</li>
+<li><strong>Local data:</strong> monthly source ZIP files in <code>data/raw/</code>; optional cache in <code>data/processed/combined_2025.csv</code></li>
+</ul>
+<p>The analysis focuses on whether flights arrive late, what causes attributed delay minutes, and when flights recover time after departure.</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Analysis-Fields">Analysis Fields<a class="anchor-link" href="#Analysis-Fields">¶</a></h2><table>
 <thead>
 <tr>
-<th>Column(s)</th>
-<th>Meaning</th>
+<th>Field group</th>
+<th>Used for</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>DepDelay</code>, <code>ArrDelay</code></td>
-<td>Minutes early or late compared with scheduled departure/arrival; positive values mean late and negative values mean early.</td>
+<td><code>DepDelay</code>, <code>ArrDelay</code>, <code>DelayDelta</code></td>
+<td>Schedule deviation and recovery</td>
 </tr>
 <tr>
 <td><code>DepDel15</code>, <code>ArrDel15</code></td>
-<td>Official BTS flags for departures or arrivals delayed by 15 minutes or more.</td>
+<td>Official 15+ minute delay rates</td>
 </tr>
 <tr>
 <td><code>CarrierDelay</code>, <code>WeatherDelay</code>, <code>NASDelay</code>, <code>SecurityDelay</code>, <code>LateAircraftDelay</code></td>
-<td>Delay minutes attributed to airline operations, significant weather, national airspace or airport conditions, security events, or late inbound aircraft.</td>
+<td>Attributed delay causes</td>
 </tr>
 <tr>
-<td><code>Cancelled</code>, <code>Diverted</code></td>
-<td>Flight status flags; 1 means yes and 0 means no.</td>
-</tr>
-<tr>
-<td><code>IATA_CODE_Reporting_Airline</code></td>
-<td>Reporting airline carrier code.</td>
-</tr>
-<tr>
-<td><code>Origin</code>, <code>Dest</code>, <code>OriginState</code>, <code>Distance</code></td>
-<td>Origin airport, destination airport, origin state/territory, and route distance in miles.</td>
-</tr>
-<tr>
-<td><code>Month</code>, <code>DayOfWeek</code>, <code>CRSDepTime</code></td>
-<td>Calendar month, numeric day of week, and scheduled departure time.</td>
+<td><code>Month</code>, <code>DayOfWeek</code>, <code>CRSDepTime</code>, <code>OriginState</code></td>
+<td>Seasonal, timing, and geographic patterns</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Important note:</strong> Delay analysis uses completed flights only: cancelled and diverted flights are excluded because they do not have comparable completed-flight arrival outcomes. Blank delay-cause fields are treated as 0 minutes because no cause-specific delay was attributed.</p>
+<p><strong>Note:</strong> Cancelled and diverted flights are excluded from delay analysis because they do not have comparable completed-flight arrival outcomes. Blank delay-cause fields are treated as 0 minutes.</p>
 </div>
 </div>
 </div>
@@ -7544,8 +7543,8 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Insight-1:-Flights-Often-Recover-Time-After-Departure">Insight 1: Flights Often Recover Time After Departure<a class="anchor-link" href="#Insight-1:-Flights-Often-Recover-Time-After-Departure">¶</a></h2><p><strong>Question:</strong> Do late departures get worse or better during the flight?</p>
-<p><strong>Answer:</strong> The typical completed flight <strong>recovers time</strong> after departure. The median delay delta (<code>ArrDelay - DepDelay</code>) is negative, meaning flights usually arrive closer to schedule than they departed. Larger departure delays are still riskier: recovery remains common, but outcomes become more variable as the initial delay grows.</p>
-<p>The visualization below groups flights by departure-delay range and plots the median arrival-minus-departure delay. The shaded band shows the middle 50% of outcomes, split around the zero line: blue indicates recovery, and red indicates delay compounding.</p>
+<p><strong>Answer:</strong> The typical completed flight <strong>recovers time</strong> after departure. Recovery means the flight arrives with fewer delay minutes than it had at departure. In this dataset, the median change from departure delay to arrival delay is -7 minutes, and the median remains negative across departure-delay ranges. Larger departure delays are still riskier because outcomes become more variable as the initial delay grows.</p>
+<p>The visualization below groups flights by departure-delay range and plots the median change in delay from departure to arrival. The shaded band shows the middle 50% of outcomes, split around the zero line: blue indicates recovery, and red indicates delay compounding.</p>
 </div>
 </div>
 </div>
@@ -7579,7 +7578,7 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Insight-2:-Late-Aircraft-and-Carrier-Delays-Lead">Insight 2: Late Aircraft and Carrier Delays Lead<a class="anchor-link" href="#Insight-2:-Late-Aircraft-and-Carrier-Delays-Lead">¶</a></h2><p><strong>Question:</strong> Which attributed delay causes contribute the most to completed-flight delay minutes?</p>
-<p><strong>Answer:</strong> <strong>LateAircraftDelay</strong> (late-arriving aircraft cascading into later departures) and <strong>CarrierDelay</strong> (crew scheduling, maintenance, operational issues) are the two largest contributors when averaged across completed flights. <strong>NASDelay</strong> is also meaningful, so the story is not only airline-controlled; weather and security delays are much smaller in the annual completed-flight average.</p>
+<p><strong>Answer:</strong> <strong>Late-arriving aircraft delays</strong> (late inbound aircraft cascading into later departures) and <strong>carrier-controlled operational delays</strong> (crew scheduling, maintenance, and related airline operations) are the two largest contributors when averaged across completed flights. <strong>National Airspace System delays</strong> are also meaningful, so the story is not only airline-controlled; weather and security delays are much smaller in the annual completed-flight average.</p>
 <p>This points to two major improvement paths: airline operational reliability through better turnaround, crew management, and planning, plus system-level airspace and airport-flow coordination.</p>
 </div>
 </div>
@@ -7602,7 +7601,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The sorted bar chart shows that LateAircraftDelay and CarrierDelay are the two largest attributed causes when averaged across completed flights, with NASDelay still meaningful. LateAircraftDelay reflects cascading schedule effects: a late arrival at one airport can delay the aircraft's next departure. CarrierDelay covers crew scheduling, maintenance, and other airline-controlled factors, while NASDelay captures airspace and airport-flow constraints. Weather and security are much smaller in this annual completed-flight average, so the strongest levers are airline operational reliability plus airspace and airport coordination.</p>
+<p>The sorted bar chart shows that late-arriving aircraft delays and carrier-controlled operational delays are the two largest attributed causes when averaged across completed flights, with National Airspace System delays still meaningful. Late-arriving aircraft delay reflects cascading schedule effects: a late arrival at one airport can delay the aircraft's next departure. Carrier-controlled delay covers crew scheduling, maintenance, and other airline-controlled factors, while National Airspace System delay captures airspace and airport-flow constraints. Weather and security are much smaller in this annual completed-flight average, so the strongest levers are airline operational reliability plus airspace and airport coordination.</p>
 </div>
 </div>
 </div>
@@ -7683,7 +7682,7 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Insight-5:-Geography-Matters,-but-State/Territory-Aggregation-Is-Coarse">Insight 5: Geography Matters, but State/Territory Aggregation Is Coarse<a class="anchor-link" href="#Insight-5:-Geography-Matters,-but-State/Territory-Aggregation-Is-Coarse">¶</a></h2><p><strong>Question:</strong> Do some origins show larger departure-to-arrival recovery gaps than others?</p>
-<p><strong>Answer:</strong> Yes, origin states and territories differ in how much delay changes between departure and arrival. However, the largest gaps are mostly recovery gaps (<code>ArrDelay &lt; DepDelay</code>), so this view is a recovery-gap screen rather than a ranking of the worst-delay states. State-level aggregation is useful for screening geographic patterns, but airport- or route-level analysis would be needed for operational decisions.</p>
+<p><strong>Answer:</strong> Yes, origin states and territories differ in how much delay changes between departure and arrival. However, the largest gaps are mostly recovery gaps, meaning average arrival delay is lower than average departure delay. This view is a recovery-gap screen rather than a ranking of the worst-delay states. State-level aggregation is useful for screening geographic patterns, but airport- or route-level analysis would be needed for operational decisions.</p>
 </div>
 </div>
 </div>
@@ -7718,13 +7717,13 @@ main {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Summary-and-Key-Takeaways">Summary and Key Takeaways<a class="anchor-link" href="#Summary-and-Key-Takeaways">¶</a></h2><p><strong>Five insights from 7,001,619 scheduled flights:</strong></p>
 <ol>
-<li><strong>Flights often recover time</strong>: the typical completed flight arrives closer to schedule than it departed</li>
-<li><strong>Late aircraft and carrier delays lead</strong>: they are the largest attributed contributors, with NAS delay also meaningful</li>
+<li><strong>Flights often recover time</strong>: completed flights usually make up delay minutes after departure</li>
+<li><strong>Late aircraft and carrier-controlled delays lead</strong>: they are the largest attributed contributors, with airspace/airport-flow delay also meaningful</li>
 <li><strong>Sunday evening is highest risk</strong>: delay risk rises through the day, with Thursday and Friday evenings also elevated</li>
 <li><strong>Seasonality peaks in summer and December</strong>: June/July lead the year, September is lowest, and December is the main winter spike</li>
 <li><strong>Geography matters, but coarsely</strong>: origin states and territories show different recovery gaps, but airport and route context would be needed for decisions</li>
 </ol>
-<p><strong>Bottom line:</strong> Departure delay remains the strongest signal for arrival delay, but the typical completed flight recovers some time en route. The clearest levers for reducing delay risk are airline operational reliability, airspace/airport coordination, and schedule planning around high-risk time windows and seasons.</p>
+<p><strong>Bottom line:</strong> Departure delay remains the strongest signal for arrival delay, but completed flights often make up some delay minutes en route. The clearest levers for reducing delay risk are airline operational reliability, airspace/airport coordination, and schedule planning around high-risk time windows and seasons.</p>
 <p><strong>For travelers:</strong> Choose morning departures when possible, treat Sunday evening as the riskiest window, and be especially cautious during the June/July summer peak and December holiday/weather spike.</p>
 </div>
 </div>
