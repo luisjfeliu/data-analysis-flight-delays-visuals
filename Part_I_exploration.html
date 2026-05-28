@@ -8908,6 +8908,18 @@ The vast majority of flights, 98.3%, arrived at their original destination. Canc
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Univariate-Exploration-Summary">Univariate Exploration Summary<a class="anchor-link" href="#Univariate-Exploration-Summary">¶</a></h3><p><strong>Distribution findings:</strong> Departure and arrival delays are heavily right-skewed: the typical completed flight is early or close to on time, while a relatively small number of severe delays pull the means above the medians. Flight distance is also right-skewed toward shorter domestic routes. No log transformation was applied to the delay variables because negative values are meaningful early departures/arrivals; instead, the visual ranges were limited where needed so the main distribution remains readable while the long-tail behavior is still discussed.</p>
+<p><strong>Tidying and unusual values:</strong> Blank delay-cause fields were converted to 0 because BTS leaves them blank when no minutes are attributed to that cause. Cancelled and diverted flights were retained for status analysis, then excluded from completed-flight delay analysis because their arrival-delay outcomes are not comparable. The long delay tails and sparse very-long-distance flights motivated later aggregation, binning, and subsampling.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Step-3:-Bivariate-Exploration">Step 3: Bivariate Exploration<a class="anchor-link" href="#Step-3:-Bivariate-Exploration">¶</a></h2><p>Assumption: comparing pairs of variables will show whether delays are mostly explained by departure behavior, airline operations, time patterns, geography, or distance.</p>
 <p>Questions for this section:</p>
 <ul>
@@ -9727,6 +9739,18 @@ The vast majority of flights, 98.3%, arrived at their original destination. Canc
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Bivariate-Exploration-Summary">Bivariate Exploration Summary<a class="anchor-link" href="#Bivariate-Exploration-Summary">¶</a></h3><p><strong>Feature relationships:</strong> Departure delay and arrival delay move together strongly, but the relationship is not one-for-one because many flights recover some time after departure. Airline, weekday, month, and delay-cause patterns show clearer differences than distance alone. Sunday has the highest arrival-delay distribution among weekdays, September is the clearest low-delay month, and the summer months plus December stand out for elevated significant-arrival-delay rates.</p>
+<p><strong>Other relationships:</strong> Delay causes vary by airline: late aircraft, carrier, and NAS delays contribute differently depending on the carrier group. Distance showed only modest differences in significant-arrival-delay rate across bins, suggesting that route, airport, airline operations, time-of-day, and weather/context variables matter more than mileage by itself.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Step-4:-Multivariate-Exploration">Step 4: Multivariate Exploration<a class="anchor-link" href="#Step-4:-Multivariate-Exploration">¶</a></h2><p>Assumption: meaningful delay patterns depend on interacting factors, such as day plus time of day, airline plus distance, or departure delay plus en-route recovery.</p>
 <p>Questions for this section:</p>
 <ul>
@@ -10285,6 +10309,18 @@ The vast majority of flights, 98.3%, arrived at their original destination. Canc
 <li><strong>DelayDelta</strong> is derived from ArrDelay - DepDelay and has only a weak simple correlation with DepDelay (<code>r ≈ 0.04</code>), so V17 is better evidence for recovery versus compounding.</li>
 <li><strong>Distance</strong> has little direct correlation with delay outcomes, reinforcing that distance alone is a weak delay predictor.</li>
 </ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Multivariate-Exploration-Summary">Multivariate Exploration Summary<a class="anchor-link" href="#Multivariate-Exploration-Summary">¶</a></h3><p><strong>Strengthened relationships:</strong> Adding time of day to weekday makes the delay pattern more specific: Sunday evening is the clearest high-risk cell, while Tuesday remains comparatively low across the day. Adding departure-delay ranges to <code>DelayDelta</code> shows that recovery is common even for late departures, but the spread widens and the recovery share falls as the initial departure delay grows. The airline-distance facets show that airline differences persist across distance ranges, while most groups still average lower arrival delay than departure delay.</p>
+<p><strong>Interesting interactions:</strong> The strongest interaction is not simply that delays compound. The typical completed flight recovers time after departure, but late-day and Sunday contexts are much more likely to produce significant late arrivals. State-level gaps also show that the places with the largest departure-to-arrival differences are not necessarily the same places with the highest mean delays, so geography should be interpreted as a coarse screening variable rather than a final explanation.</p>
 </div>
 </div>
 </div>
