@@ -22,17 +22,17 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 
 ## Key Findings
 
-1. **Delays compound over the flight:** The median delay delta (ArrDelay - DepDelay) is positive, meaning flights tend to arrive later relative to schedule than they departed. Late departures are particularly prone to worsening en route.
+1. **Flights often recover some schedule time after departure:** The median delay delta (ArrDelay - DepDelay) is negative, meaning completed flights tend to arrive closer to schedule than they departed. Large departure delays still have wider outcomes and are less predictable.
 
-2. **Airline operations are the dominant delay driver:** LateAircraftDelay and CarrierDelay are the largest contributors to overall delays, suggesting airline operational efficiency (crew scheduling, aircraft turnaround, maintenance) is more impactful than weather or air traffic control.
+2. **Airline operations are the dominant delay driver:** LateAircraftDelay and CarrierDelay are the largest contributors to overall delays, suggesting airline operational efficiency (crew scheduling, aircraft turnaround, maintenance) is more impactful than weather or security delays on average.
 
-3. **Friday is the worst day:** Both departure and arrival delays peak on Fridays, likely due to accumulated operational fatigue and end-of-week travel volume.
+3. **Sunday and late-day flights are most delay-prone:** Arrival-delay distributions and significant-delay rates peak on Sunday, especially in the evening, while Thursday and Friday evenings are also elevated and Tuesday is consistently lower.
 
-4. **Seasonal bimodality:** Delays are elevated in both winter (weather) and summer (thunderstorms + volume), with spring and fall showing the best on-time performance.
+4. **Seasonality has a summer peak and a December spike:** June and July show the highest significant arrival-delay rates, September is the clearest low-delay month, and December stands out as the strongest winter/holiday spike.
 
-5. **Hub states drive congestion:** States with major hub airports (NY, FL, IL) show consistently higher delays, but the gap between departure and arrival delays varies — some hubs recover en route while others worsen.
+5. **Geography matters, but state aggregation is coarse:** Origin states differ in both average delay and departure-to-arrival recovery, but the largest recovery gaps are not always the same states with the highest mean delays.
 
-6. **Distance is a weak predictor:** While longer flights tend to have slightly higher delays, the relationship is noisy. Local factors (airport congestion, weather) matter more than distance.
+6. **Distance is a weak predictor:** Significant arrival-delay rates are fairly flat across distance bins. Local factors such as airport congestion, weather, schedule timing, and airline operations appear more important than distance alone.
 
 ## Visualizations (18 total)
 
@@ -43,19 +43,19 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 | V3 | DepDelay vs ArrDelay densities | KDE overlay | How do the distributions compare? |
 | V4 | Distance histogram | Histogram | What is the distance distribution? |
 | V5 | Mean delay by cause | Bar chart | What are the primary delay causes? |
-| V6 | Flight status counts | Count plot | What proportion are cancelled/diverted? |
+| V6 | Flight completion status | Status bar chart | What proportion are cancelled/diverted? |
 | V7 | DepDelay vs ArrDelay | Hexbin scatter | How do departure and arrival delays relate? |
-| V8 | DepDelay by airline | Box plot | Which airlines have worst departure performance? |
-| V9 | ArrDelay by airline | Box plot | Which airlines have worst arrival performance? |
+| V8 | DepDelay >15 rate by airline | Ranked bar chart | Which airlines have worst departure performance? |
+| V9 | ArrDelay >15 rate by airline | Ranked bar chart | Which airlines have worst arrival performance? |
 | V10 | ArrDelay by day of week | Box plot | Do certain days have more delays? |
-| V11 | ArrDelay by month | Box plot | Are there seasonal patterns? |
-| V12 | Distance vs ArrDelay | Hexbin scatter | Does distance relate to delay? |
-| V13 | Delay causes by airline | Clustered bar | Do airlines experience different delay types? |
-| V14 | Delay by day × time | Facet plot | Are there day/time combinations with more delays? |
+| V11 | ArrDelay >15 rate by month | Line chart | Are there seasonal patterns? |
+| V12 | Distance vs ArrDelay >15 rate | Bar chart | Does distance relate to delay? |
+| V13 | Delay causes by airline | Small-multiple bar chart | Do airlines experience different delay types? |
+| V14 | Delay by day × time | Annotated heatmap | Are there day/time combinations with more delays? |
 | V15 | DepDelay vs ArrDelay by state | Dumbbell plot | Do some states delay departures but recover en route? |
-| V16 | Multi-encoding scatter | Scatter (color=size) | How do airline, distance, and delay interact? |
-| V17 | Delay delta analysis | Scatter + box plot | Do delays compound or dissipate? |
-| V18 | Pair plot | Scatter matrix | What is the correlation structure? |
+| V16 | Airline × distance delay comparison | Faceted scatter with color and size | How do airline, distance, and delay interact? |
+| V17 | Delay delta analysis | Binned median/IQR plot | Do delays compound or dissipate? |
+| V18 | Numeric correlation structure | Correlation heatmap | What is the correlation structure? |
 
 ## Files
 
@@ -67,7 +67,8 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 
 ## Methodology Notes
 
-- **NaN handling:** NaN in delay columns represents on-time flights (0 delay), not missing data. All delay columns were filled with 0.
-- **Subsampling:** Hexbin plots and pair plots used subsamples (50K–100K rows) to maintain performance with the 7M+ row dataset.
-- **Airline grouping:** Top 10 airlines by volume analyzed individually; smaller carriers grouped as "Other".
+- **Status handling:** Cancelled and diverted flights are counted in status analysis but excluded from delay analysis because they do not have comparable completed-flight arrival outcomes.
+- **NaN handling:** Blank delay-cause fields are converted to 0 because no minutes were attributed to that cause.
+- **Subsampling and aggregation:** The hexbin plot uses a 100K-row subsample, and several charts use grouped summaries to maintain performance with the 7M+ row dataset.
+- **Airline grouping:** Top airlines by volume are analyzed individually where grouping is needed; smaller carriers are grouped as "Other".
 - **Delayed threshold:** ArrDelay > 15 minutes used as the industry-standard definition of a delayed flight.
