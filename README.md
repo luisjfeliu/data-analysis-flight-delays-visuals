@@ -4,7 +4,7 @@
 
 **Source:** Bureau of Transportation Statistics — Reporting Carrier On-Time Performance Data
 **Year:** 2025 (12 months: Jan–Dec)
-**Size:** ~7 million flights across the monthly source ZIP files
+**Size:** 7,001,619 scheduled flights across the monthly source ZIP files
 
 The committed project data lives under `data/raw/` and is tracked with Git LFS. The `resources/` directory is intentionally ignored because it contains local course materials, example projects, and generated working files.
 
@@ -34,7 +34,7 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 
 6. **Distance is a weak predictor:** Significant arrival-delay rates are fairly flat across distance bins. Local factors such as airport congestion, weather, schedule timing, and airline operations appear more important than distance alone.
 
-## Visualizations (18 total)
+## Visualizations (19 total)
 
 | # | Visualization | Type | Question |
 |---|--------------|------|----------|
@@ -45,17 +45,18 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 | V5 | Mean delay by cause | Bar chart | What are the primary delay causes? |
 | V6 | Flight completion status | Status bar chart | What proportion are cancelled/diverted? |
 | V7 | DepDelay vs ArrDelay | Hexbin scatterplot | How do departure and arrival delays relate? |
-| V8 | DepDelay >15 rate by airline | Ranked bar chart | Which airlines have worst departure performance? |
-| V9 | ArrDelay >15 rate by airline | Ranked bar chart | Which airlines have worst arrival performance? |
-| V10 | ArrDelay by day of week | Box plot | Do certain days have more delays? |
-| V11 | ArrDelay >15 rate by month | Line chart | Are there seasonal patterns? |
-| V12 | Distance vs ArrDelay >15 rate | Bar chart | Does distance relate to delay? |
-| V13 | Delay causes by airline | Small-multiple bar chart | Do airlines experience different delay types? |
-| V14 | Delay by day × time | Annotated heatmap | Are there day/time combinations with more delays? |
-| V15 | DepDelay vs ArrDelay by state | Dumbbell plot | Do some states delay departures but recover en route? |
-| V16 | Airline × distance delay comparison | Faceted scatter with color and size | How do airline, distance, and delay interact? |
-| V17 | Delay delta analysis | Binned median/IQR plot | Do delays compound or dissipate? |
-| V18 | Numeric correlation structure | Correlation heatmap | What is the correlation structure? |
+| V8 | DepDel15 rate by airline | Ranked bar chart | Which airlines have worst departure performance? |
+| V9 | ArrDel15 rate by airline | Ranked bar chart | Which airlines have worst arrival performance? |
+| V10 | Significant delay flag overlap | Annotated heatmap | How often do significant departure and arrival delay flags overlap? |
+| V11 | ArrDelay by day of week | Box plot | Do certain days have more delays? |
+| V12 | ArrDel15 rate by month | Line chart | Are there seasonal patterns? |
+| V13 | Distance vs ArrDel15 rate | Bar chart | Does distance relate to delay? |
+| V14 | Delay causes by airline | Small-multiple bar chart | Do airlines experience different delay types? |
+| V15 | Delay by day × time | Annotated heatmap | Are there day/time combinations with more delays? |
+| V16 | DepDelay vs ArrDelay by state | Dumbbell plot | Do some states delay departures but recover en route? |
+| V17 | Airline × distance delay comparison | Faceted scatter with color and size | How do airline, distance, and delay interact? |
+| V18 | Delay delta analysis | Binned median/IQR plot | Do delays compound or dissipate? |
+| V19 | Numeric correlation structure | Correlation heatmap | What is the correlation structure? |
 
 ## Files
 
@@ -71,4 +72,4 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 - **NaN handling:** Blank delay-cause fields are converted to 0 because no minutes were attributed to that cause.
 - **Subsampling and aggregation:** The hexbin scatterplot uses a 100K-row subsample, and several charts use grouped summaries to maintain performance with the 7M+ row dataset.
 - **Airline grouping:** Top airlines by volume are analyzed individually where grouping is needed; smaller carriers are grouped as "Other".
-- **Delayed threshold:** ArrDelay > 15 minutes used as the industry-standard definition of a delayed flight.
+- **Delayed threshold:** Official BTS `DepDel15` and `ArrDel15` flags are used for significant delays, meaning 15 minutes or more late.
