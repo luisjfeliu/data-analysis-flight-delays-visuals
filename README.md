@@ -44,7 +44,7 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 | V4 | Distance histogram | Histogram | What is the distance distribution? |
 | V5 | Mean delay by cause | Bar chart | What are the primary delay causes? |
 | V6 | Flight completion status | Status bar chart | What proportion are cancelled/diverted? |
-| V7 | DepDelay vs ArrDelay | Hexbin scatter | How do departure and arrival delays relate? |
+| V7 | DepDelay vs ArrDelay | Hexbin scatterplot | How do departure and arrival delays relate? |
 | V8 | DepDelay >15 rate by airline | Ranked bar chart | Which airlines have worst departure performance? |
 | V9 | ArrDelay >15 rate by airline | Ranked bar chart | Which airlines have worst arrival performance? |
 | V10 | ArrDelay by day of week | Box plot | Do certain days have more delays? |
@@ -69,6 +69,6 @@ This framing traces how delays accumulate (or get resolved) over the course of a
 
 - **Status handling:** Cancelled and diverted flights are counted in status analysis but excluded from delay analysis because they do not have comparable completed-flight arrival outcomes.
 - **NaN handling:** Blank delay-cause fields are converted to 0 because no minutes were attributed to that cause.
-- **Subsampling and aggregation:** The hexbin plot uses a 100K-row subsample, and several charts use grouped summaries to maintain performance with the 7M+ row dataset.
+- **Subsampling and aggregation:** The hexbin scatterplot uses a 100K-row subsample, and several charts use grouped summaries to maintain performance with the 7M+ row dataset.
 - **Airline grouping:** Top airlines by volume are analyzed individually where grouping is needed; smaller carriers are grouped as "Other".
 - **Delayed threshold:** ArrDelay > 15 minutes used as the industry-standard definition of a delayed flight.

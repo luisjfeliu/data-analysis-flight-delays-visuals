@@ -8821,7 +8821,7 @@ Delayed flight rate (ArrDelay &gt; 15min): 21.6%
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="V6:-What-proportion-of-flights-are-cancelled-or-diverted?">V6: What proportion of flights are cancelled or diverted?<a class="anchor-link" href="#V6:-What-proportion-of-flights-are-cancelled-or-diverted?">¶</a></h3><p><strong>Question:</strong> How common are flight cancellations and diversions?</p>
-<p><strong>Visualization:</strong> Count plot of cancellation and diversion status.</p>
+<p><strong>Visualization:</strong> Horizontal bar chart of cancellation and diversion status percentages.</p>
 </div>
 </div>
 </div>
@@ -8939,7 +8939,7 @@ The vast majority of flights, 98.3%, arrived at their original destination. Canc
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="V7:-How-do-departure-delays-relate-to-arrival-delays?">V7: How do departure delays relate to arrival delays?<a class="anchor-link" href="#V7:-How-do-departure-delays-relate-to-arrival-delays?">¶</a></h3><p><strong>Question:</strong> Do late departures always lead to late arrivals? What is the strength of this relationship?</p>
-<p><strong>Visualization:</strong> Hexbin plot of DepDelay vs ArrDelay (subsampled to handle 7M+ rows).</p>
+<p><strong>Visualization:</strong> Hexbin scatterplot of DepDelay vs ArrDelay (subsampled to handle 7M+ rows).</p>
 </div>
 </div>
 </div>
@@ -10347,7 +10347,7 @@ The vast majority of flights, 98.3%, arrived at their original destination. Canc
 </ol>
 <h3 id="Reflections">Reflections<a class="anchor-link" href="#Reflections">¶</a></h3><ul>
 <li><strong>Status handling was critical:</strong> Cancelled and diverted flights were counted in status analysis but excluded from delay analysis because they do not have comparable completed-flight arrival outcomes.</li>
-<li><strong>Subsampling and aggregation were necessary:</strong> With 7M+ flights, the hexbin plot used subsampling and several charts used aggregation to keep the notebook responsive and readable.</li>
+<li><strong>Subsampling and aggregation were necessary:</strong> With 7M+ flights, the hexbin scatterplot used subsampling and several charts used aggregation to keep the notebook responsive and readable.</li>
 <li><strong>The departure/arrival comparison framing</strong> revealed insights that a single-delay analysis would miss, particularly how delays change after departure and which contexts recover time en route.</li>
 </ul>
 <h3 id="Dead-Ends-and-Unexpected-Findings">Dead Ends and Unexpected Findings<a class="anchor-link" href="#Dead-Ends-and-Unexpected-Findings">¶</a></h3><ul>
